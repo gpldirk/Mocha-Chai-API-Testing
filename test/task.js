@@ -1,14 +1,30 @@
 // npm install mocha --save-dev (JavaScript testing framework)
 // npm install chai --save-dev (JavaScript assertion library)
 // --save-dev (save under dev dependency in package.json, will not include in production)
+// all the js test file must be under test folder
 
-let chai = require('chai');
-let chaiHttp = require('chai-http');
-let server = require('../index');
+const chai = require('chai');
+const chaiHttp = require('chai-http');
+const server = require('../index');
 const { response } = require('express');
 
-// select assert style -> should()
+const result = 'Hello';
+
+const assert = chai.assert;
+assert.equal(result, 'Hello')
+assert.typeOf(result, 'string')
+assert.lengthOf(result, 5)
+
+const expect = chai.expect;
+expect(result).to.equal('Hello')
+expect(result).to.be.a('string')
+expect(result).to.have.lengthOf(5)
+
 chai.should();
+result.should.be.eq('Hello')
+result.should.be.a('string')
+result.length.should.be.eq(5)
+
 
 // use http to test rest api
 chai.use(chaiHttp);
